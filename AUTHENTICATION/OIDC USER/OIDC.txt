@@ -1,0 +1,34 @@
+
+@RestController
+public class OAuthSuccessController {
+
+    private JwtService jwtService;
+
+    public OAuthSuccessController(JwtService jwtService) {
+        this.jwtService = jwtService;
+    }
+
+    @GetMapping("/oauth2/success")
+    public void success(HttpServletResponse response,
+                        @AuthenticationPrincipal OidcUser oidcUser) throws IOException {
+        if (oidcUser == null) {
+            response.sendRedirect("http://localhost:4200/login?error=unauthorized");
+            return;
+        }
+
+        String username = oidcUser.getEmail(); // ✅ safe to call now
+
+        String token = jwtService.generateToken(username);
+
+        ResponseCookie cookie = ResponseCookie.from("jwt", token)
+                .httpOnly(true)
+                .secure(true)
+                .path("/")
+                .maxAge(Duration.ofDays(1))
+                .build();
+
+        response.setHeader("Set-Cookie", cookie.toString());
+        response.sendRedirect("http://localhost:4200/login");
+    }
+
+}

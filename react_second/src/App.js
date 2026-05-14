@@ -5,6 +5,9 @@ import Counter from './components/Counter';
 import ToogleText from './components/ToggleText';
 import InputField from './components/InputField';
 import TodoList from './components/TodoList';
+import Alert from './components/Alert';
+import CounterApp from './components/CounterApp';
+import LiveInput from './components/LiveInput';
 
 function App() {
   
@@ -13,6 +16,9 @@ function App() {
       <Counter />
       <ToogleText />
       <InputField />
+      <Alert />
+      <CounterApp />
+      <LiveInput />
     </div>
   );
   }

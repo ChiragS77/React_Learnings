@@ -133,10 +133,51 @@ let school = {
 console.log(school.schoolName())
 
 
-//__________loop in object___________
+//__________loop through object___________
 // for in loop
 for(let key in user){
         console.log(key,user[key]);
+}
+
+
+//_____________ Array of Objects _______________
+let army = [
+    {
+        id:1,
+        name:"Chirag Deshmukh"
+    },
+    {
+        id:2,
+        name:"Saloni Dubey "
+    },
+    {
+        id:3,
+        name:"Alex Deshmukh"
+    }
+];
+
+
+console.log("MY name is "+army[2].name);
+
+for(let key in army){
+    console.log(key ,army[key])
+}
+
+//forEach  for Array of objects
+
+army.forEach(user =>{
+    console.log(user["name"]);
+    console.log(user.id);
+})
+
+
+//______________ Nested Object___________
+let newUser = {
+    name:"Chirag Deshmukh",
+    address:{
+        city:"Akola",
+        state:"Maharashtra"
+    }
 }
 
 
